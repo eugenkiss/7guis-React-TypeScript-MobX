@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es5",
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "jsx": "react",
+    "outDir": "dist-ts/",
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "declaration": false,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "lib": [
+      "es2015",
+      "es2016",
+      "dom"
+    ]
+  },
+  "exclude": [
+    "dist*",
+    "node_modules"
+  ]
+}
