@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import {observer, Provider} from 'mobx-react'
+import {observer} from 'mobx-react'
 import MobxDevTools from 'mobx-react-devtools'
 import {css, cx} from 'emotion'
 import {ThemeProvider} from 'emotion-theming'
@@ -8,7 +8,7 @@ import * as FontAwesome from '@fortawesome/react-fontawesome'
 import faFileCode from '@fortawesome/fontawesome-free-solid/faFileCode'
 import './css'
 import {Counter} from './guis/counter'
-import {Flex, Box, Fill, Span} from './basic'
+import {Box, Fill, Flex} from './basic'
 import {TempConvAuto, TempConvManual} from './guis/tempconv'
 import {FlightBooker} from './guis/flight'
 import {Timer} from './guis/timer'
@@ -53,7 +53,7 @@ class App extends React.Component<{
             <Fill/>
             <a
               target='_blank'
-              href={`https://eugenkiss.github.io/7guis-React-TypeScript-MobX/blob/master/src/app/guis/${filename}`}
+              href={`https://github.com/eugenkiss/7guis-React-TypeScript-MobX/blob/master/src/app/guis/${filename}`}
             >
               <FontAwesome color='#999' icon={faFileCode}/>
             </a>
