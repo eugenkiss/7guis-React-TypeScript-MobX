@@ -1,4 +1,5 @@
 {
+  "main": "src/app/index.tsx",
   "private": true,
   "devDependencies": {
     "@types/react": "16.0.38",

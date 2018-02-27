@@ -1,5 +1,4 @@
 const path = require('path')
-const exec = require('child_process').execSync
 const webpack = require('webpack')
 
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
@@ -8,6 +7,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const PORT = process.env['PORT'] || '5001'
 const OUTPUT = process.env['OUTPUT'] || 'dist'
+const PUBLIC_PATH = process.env['PUBLIC_PATH'] || '/'
 
 const isBuild = process.env['BUILD'] === 'true'
 const isDev = !isBuild
@@ -27,7 +27,7 @@ cfg.entry = {
 
 cfg.output = {
   path: root(OUTPUT),
-  publicPath: '/',
+  publicPath: PUBLIC_PATH,
   filename: isBuild ? 'js/[name].[hash].js' : 'js/[name].js',
   chunkFilename: isBuild ? '[id].[hash].chunk.js' : '[id].chunk.js',
 }
@@ -92,9 +92,6 @@ if (isBuild) {
         }
       }
     }),
-  )
-} else {
-  cfg.plugins.push(
     new HtmlWebpackPlugin({
       template: root('src', 'public', 'template.html'),
       inject: 'body',
