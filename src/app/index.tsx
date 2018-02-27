@@ -81,7 +81,7 @@ class App extends React.Component<{
           <Box mb={4}/>
           <Box f={3}>
             This is a live version of an implementation
-            {' '}(<a href='https://eugenkiss.github.io/7guis-React-TypeScript-MobX'>source</a>){' '}
+            {' '}(<a href='https://github.com/eugenkiss/7guis-React-TypeScript-MobX'>source</a>){' '}
             of
             {' '}<a href='https://eugenkiss.github.io/7guis/'>7GUIs</a>{' '}
             with
