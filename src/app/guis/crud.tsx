@@ -1,10 +1,10 @@
 import * as React from 'react'
 import {Component} from 'react'
 import {observer} from 'mobx-react'
-import {computed, IComputedValue, IObservableValue, observable} from 'mobx'
+import {computed, IObservableValue, observable} from 'mobx'
 import {css} from 'emotion'
 import {DateTime} from 'luxon'
-import {Button, Flex, TextInput, Label, Span, Box, Stack} from '../basic'
+import {Box, Button, Flex, Label, Stack, TextInput, VFlex} from '../basic'
 import {uuid} from '../utils'
 
 const padder = <Label className={css`visibility: hidden`}>Surname:{' '}</Label>
@@ -45,8 +45,7 @@ export class Crud extends Component {
 
   render() {
     return (
-      <Flex
-        flexDirection='column'
+      <VFlex
         minWidth='410px'
         vspace={2}
       >
@@ -93,7 +92,7 @@ export class Crud extends Component {
           <Button onClick={this.handleUpdate}>Update</Button>
           <Button onClick={this.handleDelete}>Delete</Button>
         </Flex>
-      </Flex>
+      </VFlex>
     )
   }
 }

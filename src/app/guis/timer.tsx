@@ -1,10 +1,10 @@
 import * as React from 'react'
 import {Component} from 'react'
 import {observer} from 'mobx-react'
-import {autorun, computed, IComputedValue, IObservableValue, observable} from 'mobx'
+import {computed, observable} from 'mobx'
 import {css} from 'emotion'
 import {DateTime} from 'luxon'
-import {Button, Flex, TextInput, Label, Span, Box, Stack} from '../basic'
+import {Box, Button, Flex, Label, Stack, VFlex} from '../basic'
 import {now} from 'mobx-utils'
 
 interface ReadOnlyObs<T> {
@@ -32,8 +32,7 @@ export class Timer extends Component {
 
   render() {
     return (
-      <Flex
-        flexDirection='column'
+      <VFlex
         minWidth='350px'
         vspace={1}
       >
@@ -60,7 +59,7 @@ export class Timer extends Component {
         >
           Reset Timer
         </Button>
-      </Flex>
+      </VFlex>
     )
   }
 }

@@ -2,9 +2,8 @@ import * as React from 'react'
 import {Component} from 'react'
 import {observer} from 'mobx-react'
 import {computed, IComputedValue, IObservableValue, observable} from 'mobx'
-import {css} from 'emotion'
 import {DateTime} from 'luxon'
-import {Button, Flex, TextInput, Label, Span} from '../basic'
+import {Button, TextInput, VFlex} from '../basic'
 
 const dateFormat = 'dd.MM.yyyy'
 
@@ -48,8 +47,7 @@ export class FlightBooker extends Component {
 
   render() {
     return (
-      <Flex
-        flexDirection='column'
+      <VFlex
         minWidth='200px'
         vspace={2}
       >
@@ -77,7 +75,7 @@ export class FlightBooker extends Component {
         >
           Book
         </Button>
-      </Flex>
+      </VFlex>
     )
   }
 }

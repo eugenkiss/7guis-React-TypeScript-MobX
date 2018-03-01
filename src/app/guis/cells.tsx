@@ -1,12 +1,9 @@
 import * as React from 'react'
 import {Component} from 'react'
 import {observer} from 'mobx-react'
-import {computed, IComputedValue, IObservableValue, observable} from 'mobx'
-import {css} from 'emotion'
+import {IObservableValue} from 'mobx'
 import {DateTime} from 'luxon'
-import {Button, Flex, TextInput, Label, Span, Box, Stack} from '../basic'
-
-const padder = <Label className={css`visibility: hidden`}>Surname:{' '}</Label>
+import {Flex, TextInput} from '../basic'
 
 @observer
 export class Cells extends Component {
@@ -14,7 +11,6 @@ export class Cells extends Component {
   render() {
     return (
       <Flex
-        flexDirection='column'
         minWidth='410px'
         vspace={1}
       >

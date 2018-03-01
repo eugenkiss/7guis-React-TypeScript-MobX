@@ -1,26 +1,40 @@
 import * as React from 'react'
+import {Component} from 'react'
 import styled from 'react-emotion'
 import {css} from 'emotion'
 import {
-  style,
-  util,
-  propTypes,
   alignItems,
   alignSelf,
+  background,
+  border,
+  borderRadius,
+  bottom,
   color,
   flex,
   flexDirection,
   flexWrap,
   fontSize,
   fontWeight,
+  height,
   justifyContent,
+  left,
+  maxHeight,
+  maxWidth,
+  minHeight,
+  minWidth,
+  position,
+  propTypes,
+  right,
   space,
+  style,
+  styles,
   textAlign,
-  width, height, minWidth, maxWidth, minHeight, maxHeight,
-  background,
+  top,
+  util,
+  width,
+  zIndex,
 } from 'styled-system'
 import tag from 'clean-tag'
-import {Component} from 'react'
 
 const vspace = props => {
   let v = props.vspace
@@ -56,17 +70,20 @@ const hspace = props => {
   `
 }
 
+// TODO: Is there an easy way to say 'apply all of the styles to this styled-component'?
 export const Box = styled(tag)`
 ${vspace} ${hspace}
-${space} 
+${space}
 ${width} ${height}
 ${minWidth} ${maxWidth} ${minHeight} ${maxHeight}
 ${fontSize}
 ${fontWeight}
-${color} 
+${color}
 ${flex}
 ${textAlign}
 ${background}
+${border} ${borderRadius}
+${position} ${zIndex} ${left} ${top} ${right} ${bottom}
 ` as any
 
 export const Flex = styled(Box)`
@@ -77,6 +94,12 @@ ${flexWrap}
 ${flexDirection}
 ${alignSelf}
 ` as any
+
+export const VFlex = styled(Flex)`
+` as any
+VFlex.defaultProps = {
+  flexDirection: 'column'
+}
 
 export const Fill = styled(Box)`
 flex: 1 1 auto;
