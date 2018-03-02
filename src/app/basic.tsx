@@ -6,9 +6,10 @@ import {
   alignItems,
   alignSelf,
   background,
-  border,
   borderRadius,
+  borders,
   bottom,
+  boxShadow,
   color,
   flex,
   flexDirection,
@@ -82,7 +83,8 @@ ${color}
 ${flex}
 ${textAlign}
 ${background}
-${border} ${borderRadius}
+${borders} ${borderRadius}
+${boxShadow}
 ${position} ${zIndex} ${left} ${top} ${right} ${bottom}
 ` as any
 

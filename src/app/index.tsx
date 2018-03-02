@@ -13,7 +13,7 @@ import {TempConvAuto, TempConvManual} from './guis/tempconv'
 import {FlightBooker} from './guis/flight'
 import {Timer} from './guis/timer'
 import {Crud} from './guis/crud'
-import {CircleDrawer} from './guis/circles'
+import {CircleDrawerTraditional} from './guis/circles/drawer-traditional'
 import {Cells} from './guis/cells'
 
 const theme = {
@@ -96,7 +96,7 @@ class App extends React.Component<{
           {this.renderGui('Flight Booker', 'flight.tsx', <FlightBooker/>)}
           {this.renderGui('Timer', 'timer.tsx', <Timer/>)}
           {this.renderGui('CRUD', 'crud.tsx', <Crud/>)}
-          {this.renderGui('Circle Drawer', 'circle.tsx', <CircleDrawer/>)}
+          {this.renderGui('Circle Drawer Traditional', 'circles/drawer-traditional.tsx', <CircleDrawerTraditional/>)}
           {this.renderGui('Cells', 'cells.tsx', <Cells/>)}
         </div>
       </ThemeProvider>
