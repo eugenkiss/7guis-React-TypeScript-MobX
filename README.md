@@ -7,8 +7,6 @@ Implementation of [7GUIs](http://eugenkiss.github.io/7guis/) with
 
 Run `make dev` for development mode.
 
-WIP: Cells missing!
-
 Additional notable libraries:
 
 - [styled-system](https://github.com/jxnblk/styled-system)

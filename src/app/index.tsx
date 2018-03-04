@@ -14,7 +14,7 @@ import {FlightBooker} from './guis/flight'
 import {Timer} from './guis/timer'
 import {Crud} from './guis/crud'
 import {CircleDrawerTraditional} from './guis/circles/drawer-traditional'
-import {Cells} from './guis/cells'
+import {Cells} from './guis/cells/cells'
 
 const theme = {
   fontSizes: [
@@ -97,7 +97,7 @@ class App extends React.Component<{
           {this.renderGui('Timer', 'timer.tsx', <Timer/>)}
           {this.renderGui('CRUD', 'crud.tsx', <Crud/>)}
           {this.renderGui('Circle Drawer Traditional', 'circles/drawer-traditional.tsx', <CircleDrawerTraditional/>)}
-          {this.renderGui('Cells', 'cells.tsx', <Cells/>)}
+          {this.renderGui('Cells', 'cells/cells.tsx', <Cells/>)}
         </div>
       </ThemeProvider>
     )
