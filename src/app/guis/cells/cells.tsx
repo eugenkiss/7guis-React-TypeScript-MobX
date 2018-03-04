@@ -164,7 +164,7 @@ class CellComp extends Component<{
         {...rest}
       >
         {cell.editing.get() ? (
-          <ApplyTextField
+          <TextField
             ref={this.handleFocus}
             w='100%'
             value={cell.content}
@@ -180,7 +180,7 @@ class CellComp extends Component<{
 }
 
 @observer
-class ApplyTextField extends Component<{
+class TextField extends Component<{
   value?: IObservableValue<string>
   [key: string]: any
 }> {
