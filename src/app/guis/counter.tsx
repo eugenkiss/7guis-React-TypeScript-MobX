@@ -6,9 +6,9 @@
 import * as React from 'react'
 import {observer} from 'mobx-react'
 import {observable} from 'mobx'
-import {Button, Flex, Label, Span} from '../basic'
+import {Button, Flex, Label} from '../basic'
 
-const count = observable(0)
+const count = observable.box(0)
 
 export const Counter = observer(() =>
   <Flex alignItems='center' minWidth='200px'>

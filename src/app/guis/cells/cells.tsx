@@ -10,7 +10,7 @@ import {FormulaParser} from './parser'
 
 export class Store {
   cells = Array<Array<Cell>>()
-  selected: IObservableValue<Cell> = observable(null)
+  selected: IObservableValue<Cell> = observable.box(null)
   parser = new FormulaParser()
 
   constructor() {

@@ -119,7 +119,7 @@ export class CircleDrawerTraditional extends Component {
 
   store = new Store()
 
-  inContextMode = observable(false)
+  inContextMode = observable.box(false)
 
   disposers = []
 

@@ -2,6 +2,7 @@
 /.awcache
 /.idea
 /dist
+/dist-ts
 
 npm-debug.log*
 yarn-debug.log*

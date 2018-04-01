@@ -28,7 +28,7 @@ export class Timer extends Component {
     if (new Date().getTime() - this.start >= max) return max
     return clamp(now(100) - this.start, 0, max)
   })
-  readonly max = observable(MAX / 2)
+  readonly max = observable.box(MAX / 2)
 
   render() {
     return (

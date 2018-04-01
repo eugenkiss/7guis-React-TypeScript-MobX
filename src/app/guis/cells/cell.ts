@@ -8,7 +8,7 @@ export class Cell {
   ) {}
 
   initialContent = '' // TODO: Better dirty field abstraction (mobx-utils)
-  readonly content = observable('')
+  readonly content = observable.box('')
   readonly formula = observable.box<Formula>(new Textual(""))
   readonly editing = computed(() => this.store.selected.get() === this)
 

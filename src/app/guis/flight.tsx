@@ -23,8 +23,8 @@ export class FlightBooker extends Component {
 
   @observable type: 'one-way' | 'return' = 'one-way'
 
-  readonly start = observable(DateTime.local().toFormat(dateFormat))
-  readonly end = observable(this.start.get())
+  readonly start = observable.box(DateTime.local().toFormat(dateFormat))
+  readonly end = observable.box(this.start.get())
   readonly validStart = computed(() => isValidDate(this.start.get()))
   readonly validEnd = computed(() => isValidDate(this.end.get()))
   readonly disabledEnd = computed(() => this.type !== 'return')

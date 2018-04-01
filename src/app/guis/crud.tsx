@@ -12,11 +12,11 @@ const padder = <Label className={css`visibility: hidden`}>Surname:{' '}</Label>
 @observer
 export class Crud extends Component {
 
-  readonly prefix = observable('')
-  readonly firstName = observable('')
-  readonly lastName = observable('')
+  readonly prefix = observable.box('')
+  readonly firstName = observable.box('')
+  readonly lastName = observable.box('')
   readonly name = computed(() => `${this.lastName}, ${this.firstName}`)
-  readonly selected = observable('')
+  readonly selected = observable.box('')
   readonly db = observable.array([
     [uuid(), "Emil, Hans"],
     [uuid(), "Mustermann, Max"],
@@ -31,14 +31,14 @@ export class Crud extends Component {
 
   handleUpdate = () => {
     const id = this.selected.get()
-    const index = this.db.findIndex(([i, _]) => i === id)
+    const index = this.db.findIndex(([i]) => i === id)
     if (index === -1) return
     this.db[index] = [uuid(), this.name.get()]
   }
 
   handleDelete = () => {
     const id = this.selected.get()
-    const index = this.db.findIndex(([i, _]) => i === id)
+    const index = this.db.findIndex(([i]) => i === id)
     if (index === -1) return
     this.db.splice(index, 1)
   }
