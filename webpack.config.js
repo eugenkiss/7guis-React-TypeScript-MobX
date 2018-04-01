@@ -1,7 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
 
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
@@ -13,16 +12,13 @@ const isBuild = process.env['BUILD'] === 'true'
 const isDev = !isBuild
 
 const cfg = {}
-cfg.context = root('src')
 
-if (isBuild) {
-  cfg.devtool = 'source-map'
-} else {
-  cfg.devtool = 'cheap-module-eval-source-map'
-}
+cfg.mode = isBuild ? 'production' : 'development'
+
+cfg.devtool = isBuild ? 'source-map' : undefined
 
 cfg.entry = {
-  main: './app/index'
+  main: root('src', 'app', 'index.tsx')
 }
 
 cfg.output = {
@@ -39,7 +35,7 @@ cfg.resolve = {
 }
 
 cfg.module = {
-  loaders: [
+  rules: [
     {
       test: /\.tsx?$/,
       include: root('src', 'app'),
@@ -71,41 +67,22 @@ cfg.plugins = [
       'DEV': JSON.stringify(isDev), // For distinguishing between dev and non-dev mode
     }
   }),
+  new HtmlWebpackPlugin({
+    template: root('src', 'public', 'template.html'),
+    inject: 'body',
+  }),
+  new CopyWebpackPlugin([{
+    from: root('src', 'public')
+  }]),
 ]
 
-cfg.plugins.push(
-  new CopyWebpackPlugin([{
-    from: root('src/public')
-  }]),
-)
-
-if (isBuild) {
-  cfg.plugins.push(
-    new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.optimize.AggressiveMergingPlugin(),
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new UglifyJSPlugin({
-      sourceMap: true,
-      uglifyOptions: {
-        compress: {
-          passes: 3,
-        }
-      }
-    }),
-    new HtmlWebpackPlugin({
-      template: root('src', 'public', 'template.html'),
-      inject: 'body',
-    }),
-  )
-}
-
 cfg.devServer = {
+  port: PORT,
   contentBase: root('src', 'public'),
   hot: false,
   historyApiFallback: true,
-  port: PORT,
   stats: {
-    warnings: false,
+    warnings: true,
   },
 }
 

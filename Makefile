@@ -23,6 +23,11 @@ build: node_modules src webpack.config.js
 	PUBLIC_PATH=$(public_path) \
 	$(NPM_BIN)/webpack --progress --profile
 
+# Just needed as a sanity check
+# Note: Adjust public_path to '/', build, and then serve.
+serve:
+	$(NPM_BIN)/serve dist
+
 publish: build
 	rm -rf gh-pages
 	git clone -b gh-pages --single-branch --depth 1 git@github.com:eugenkiss/7guis-React-TypeScript-MobX.git gh-pages
