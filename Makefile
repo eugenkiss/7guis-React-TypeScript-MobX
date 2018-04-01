@@ -1,49 +1,27 @@
-# Constants #
-#############
-
-port_dev=5001
+NPM_BIN=./node_modules/.bin
 
 out=dist
+port_dev=5001
 public_path=/7guis-React-TypeScript-MobX/
 
-webpack=./node_modules/webpack/bin/webpack.js
-webpack-dev-server=./node_modules/webpack-dev-server/bin/webpack-dev-server.js
 
-
-# Installation #
-################
-
-# Smart install: Only executes if package.json's
-# modification date is later than node_module's
 install: node_modules
 
 node_modules: package.json
 	npm install
 	@touch -m node_modules
 
-
-# Dev Mode #
-############
-
 dev: node_modules
 	ENV=loc \
 	PORT=$(or $(port),$(port_dev)) \
-	$(webpack-dev-server) -d --progress --colors --open
-
-
-# Building #
-############
+	$(NPM_BIN)/webpack-dev-server -d --progress --colors --open
 
 build: node_modules src webpack.config.js
 	rm -rf ./$(out)
 	BUILD=true \
 	OUTPUT=$(out) \
 	PUBLIC_PATH=$(public_path) \
-	$(webpack) --progress --profile
-
-
-# Deployment #
-##############
+	$(NPM_BIN)/webpack --progress --profile
 
 publish: build
 	rm -rf gh-pages
