@@ -1,5 +1,8 @@
 import * as React from 'react'
 import {Component} from 'react'
+import {autorun} from 'mobx'
+import {IAutorunOptions} from 'mobx/lib/api/autorun'
+import {IReactionPublic} from 'mobx/lib/core/reaction'
 import styled from 'react-emotion'
 import {css} from 'emotion'
 import {
@@ -139,6 +142,20 @@ export class Stack extends Component {
         {rest && <Stack>{rest}</Stack>}
       </Box>
     )
+  }
+}
+
+// Note: One thing I don't like is that you can forgot to call super.componentWillUnmount
+// in the extending class. The best way, I think, is if React allowed something like
+// `this.addUnmountCallback` which would be called in the constructor.
+export class Comp<P = {}, S = {}> extends React.Component<P, S> {
+  disposers = []
+
+  autorun = (view: (r: IReactionPublic) => any, opts?: IAutorunOptions) =>
+    this.disposers.push(autorun(view, opts))
+
+  componentWillUnmount() {
+    for (const disposer of this.disposers) disposer()
   }
 }
 

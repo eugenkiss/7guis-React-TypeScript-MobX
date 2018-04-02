@@ -1,8 +1,8 @@
 import * as React from 'react'
-import {Component} from 'react'
 import {observer} from 'mobx-react'
-import {action, autorun, computed, observable} from 'mobx'
+import {action, computed, observable} from 'mobx'
 import {DateTime} from 'luxon'
+import {Comp} from '../../basic'
 import {ICircle} from './model'
 import {CircleDrawerPure} from './frame'
 
@@ -115,24 +115,18 @@ class Store {
 }
 
 @observer
-export class CircleDrawerTraditional extends Component {
+export class CircleDrawerTraditional extends Comp {
 
   store = new Store()
 
   inContextMode = observable.box(false)
 
-  disposers = []
-
   componentDidMount() {
-    this.disposers.push(autorun(() => {
+    this.autorun(() => {
       if (!this.inContextMode.get()) {
         this.store.selected = null
       }
-    }))
-  }
-
-  componentWillUnmount() {
-    for (const disposer of this.disposers) disposer()
+    })
   }
 
   @action handleAddCircle = (x: number, y: number) => {

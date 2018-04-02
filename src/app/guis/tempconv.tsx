@@ -1,8 +1,8 @@
 import * as React from 'react'
 import {Component} from 'react'
 import {observer} from 'mobx-react'
-import {autorun, observable} from 'mobx'
-import {Button, Flex, TextInput, Label, Span} from '../basic'
+import {observable} from 'mobx'
+import {Comp, Flex, Label, TextInput} from '../basic'
 
 function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n)
@@ -85,34 +85,28 @@ example, the advantages do not matter since it is too small.
 */
 
 @observer
-export class TempConvAuto extends Component {
+export class TempConvAuto extends Comp {
   @observable celsius = ''
   @observable fahrenheit = ''
 
-  disposers = []
-
   componentDidMount() {
     let prevF = null
-    this.disposers.push(autorun(() => {
+    this.autorun(() => {
       if (this.fahrenheit === prevF) return // stop propagation
       prevF = this.fahrenheit
       if (!isNumeric(this.fahrenheit)) return
       const f = parseFloat(this.fahrenheit)
       prevC = this.celsius = Math.round((f - 32) * (5 / 9)).toString()
-    }))
+    })
 
     let prevC = null
-    this.disposers.push(autorun(() => {
+    this.autorun(() => {
       if (this.celsius === prevC) return // stop propagation
       prevC = this.celsius
       if (!isNumeric(this.celsius)) return
       const c = parseFloat(this.celsius)
       prevF = this.fahrenheit = Math.round(c * (9/5) + 32).toString()
-    }))
-  }
-
-  componentWillUnmount() {
-    for (const disposer of this.disposers) disposer()
+    })
   }
 
   render() {

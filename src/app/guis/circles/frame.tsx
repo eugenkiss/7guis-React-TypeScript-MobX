@@ -2,10 +2,10 @@ import * as React from 'react'
 import {Component} from 'react'
 import ReactDOM from 'react-dom'
 import {observer} from 'mobx-react'
-import {action, autorun, IComputedValue, IObservableValue, observable} from 'mobx'
+import {action, IComputedValue, IObservableValue, observable} from 'mobx'
 import {css} from 'emotion'
 import {DateTime} from 'luxon'
-import {Box, BoxClickable, Button, Flex, VFlex} from '../../basic'
+import {Box, BoxClickable, Button, Comp, Flex, VFlex} from '../../basic'
 import {ICircle} from './model'
 
 @observer
@@ -34,7 +34,7 @@ class CircleComp extends Component<{
 }
 
 @observer
-export class CircleDrawerPure extends Component<{
+export class CircleDrawerPure extends Comp<{
   circles: Array<ICircle>
   inContextMode: IObservableValue<Boolean>
   onMouseMove: (x: number, y: number) => void
@@ -52,8 +52,6 @@ export class CircleDrawerPure extends Component<{
   canRedo: IComputedValue<Boolean>
 }> {
 
-  disposers = []
-
   canvasRef = null
 
   contextMenuRef = null
@@ -69,15 +67,15 @@ export class CircleDrawerPure extends Component<{
   initialDiameter: number = null
 
   componentDidMount() {
-    this.disposers.push(autorun(() => {
+    this.autorun(() => {
       this.props.inContextMode.set(this.contextMenuVisible || this.diameterDialogVisible)
-    }))
+    })
     document.addEventListener('click', this.handleDocumentContextMenuClick, true)
     document.addEventListener('click', this.handleDocumentDialogClick, true)
   }
 
   componentWillUnmount() {
-    for (const disposer of this.disposers) disposer()
+    super.componentWillUnmount()
     document.removeEventListener('click', this.handleDocumentContextMenuClick, true)
     document.removeEventListener('click', this.handleDocumentDialogClick, true)
   }
